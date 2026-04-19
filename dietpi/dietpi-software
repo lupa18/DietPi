@@ -8517,8 +8517,8 @@ _EOF_
 			# Install ruTorrent: Web UI for rTorrent
 			# - Grab current version
 			local version=$(curl -sSfL 'https://api.github.com/repos/Novik/ruTorrent/releases/latest' | grep -Po '"tag_name": *"\K[^"]+(?=")')
-			[[ $version ]] || { version='v5.2.10'; G_DIETPI-NOTIFY 1 "Automatic latest ruTorrent version detection failed. Version \"$version\" will be installed as fallback, but a newer version might be available. Please report this at: https://github.com/MichaIng/DietPi/issues"; }
-			[[ $version == 'v5.'* ]] || version='v5.2.10'
+			[[ $version ]] || { version='v5.3.0'; G_DIETPI-NOTIFY 1 "Automatic latest ruTorrent version detection failed. Version \"$version\" will be installed as fallback, but a newer version might be available. Please report this at: https://github.com/MichaIng/DietPi/issues"; }
+			[[ $version == 'v5.'* ]] || version='v5.3.0'
 			Download_Install "https://github.com/Novik/ruTorrent/archive/$version.tar.gz"
 
 			# - Reinstall freshly with preserved configs and 3rd party plugins
@@ -9872,7 +9872,7 @@ _EOF_
 				3) local arch='LinuxARM64';;
 				*) local arch='LinuxAMDx64';;
 			esac
-			local fallback_url="https://github.com/Jackett/Jackett/releases/download/v0.24.1614/Jackett.Binaries.$arch.tar.gz"
+			local fallback_url="https://github.com/Jackett/Jackett/releases/download/v0.24.1622/Jackett.Binaries.$arch.tar.gz"
 			Download_Install "$(curl -sSfL 'https://api.github.com/repos/Jackett/Jackett/releases/latest' | grep -Po "\"browser_download_url\": *\"\K[^\"]*\/Jackett\.Binaries\.$arch\.tar\.gz(?=\")")"
 
 			# Move existing configs to unpacked install dir
@@ -10664,7 +10664,7 @@ _EOF_
 				*) local arch='arm-6';;
 			esac
 
-			local fallback_url="https://github.com/go-gitea/gitea/releases/download/v1.25.5/gitea-1.25.5-linux-$arch.xz"
+			local fallback_url="https://github.com/go-gitea/gitea/releases/download/v1.26.0/gitea-1.26.0-linux-$arch.xz"
 			Download_Install "$(curl -sSfL 'https://api.github.com/repos/go-gitea/gitea/releases/latest' | grep -Po "\"browser_download_url\": *\"\K[^\"]*\/gitea-[^\"\/]*-linux-$arch\.xz(?=\")")" /mnt/dietpi_userdata/gitea/gitea
 
 			# User
@@ -11365,7 +11365,7 @@ _EOF_
 					local version=$(curl -sSfL "$url"); version=${version#*:\[\"} version=${version%%\"*}
 					local build=$(curl -sSfL "$url/versions/$version"); build=${build##*\":\[} build=${build%%,*}
 					url=$(curl -sSfL "$url/versions/$version/builds/$build"); url=${url##*\"url\":\"} url=${file%%\"*}
-					local fallback_url='https://fill-data.papermc.io/v1/objects/bcf7d5a399428d252e0710de9e305935e0af0ce8b4d50fd4651bc3d6f6a320fb/paper-26.1.2-7.jar'
+					local fallback_url='https://fill-data.papermc.io/v1/objects/f439b6d6bfc8c62346419ca677bd5aba0db801836418ca9dcc4fb6ad593516f1/paper-26.1.2-15.jar'
 				fi
 				Download_Install "$url" /opt/papermc/paperclip.jar
 				G_EXEC mkdir -p /mnt/dietpi_userdata/papermc
@@ -11464,7 +11464,7 @@ _EOF_
 					*) local arch='amd64';;
 				esac
 
-				local fallback_url="https://github.com/rclone/rclone/releases/download/v1.73.4/rclone-v1.73.4-linux-$arch.deb"
+				local fallback_url="https://github.com/rclone/rclone/releases/download/v1.73.5/rclone-v1.73.5-linux-$arch.deb"
 				Download_Install "$(curl -sSfL 'https://api.github.com/repos/rclone/rclone/releases/latest' | grep -Po "\"browser_download_url\": *\"\K[^\"]*\/rclone-v[^\"\/]*-linux-$arch\.deb(?=\")")"
 			fi
 		fi
@@ -12430,7 +12430,7 @@ _EOF_
 			esac
 
 			# Download
-			local fallback_url="https://github.com/tphakala/birdnet-go/releases/download/nightly-20260414/birdnet-go-linux-$arch.tar.gz"
+			local fallback_url="https://github.com/tphakala/birdnet-go/releases/download/nightly-20260418/birdnet-go-linux-$arch.tar.gz"
 			Download_Install "$(curl -sSfL 'https://api.github.com/repos/tphakala/birdnet-go/releases' | grep -Po "\"browser_download_url\": *\"\K[^\"]*-linux-$arch\.tar\.gz(?=\")" | head -1)" birdnet
 
 			# Change rpath for birdnet-go to make use of libtensorflowlite_c.so in its own dir
